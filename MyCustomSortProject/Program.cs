@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Data;
 using static MyCustomSortProject.Repository;
 
 namespace MyCustomSortProject
@@ -16,7 +18,7 @@ namespace MyCustomSortProject
             Dictionary<string, int> sortParameter = new Dictionary<string, int>()
             {
                 [orderBy] = 1,
-                [thenBy] = 1
+                [thenBy] = 2
             };
 
             foreach (Person person in Persons)
@@ -31,9 +33,10 @@ namespace MyCustomSortProject
             {
                 PropertyInfo property1 = typeof(Person).GetProperty(orderBy);
                 PropertyInfo property2 = typeof(Person).GetProperty(thenBy);
-                if (property1 != null && property2 != null)
+                if (property1 != null && _sortParameter[orderBy] == 1 && 
+                    property2 != null && _sortParameter[thenBy] == 2)
                 {
-                    return list.OrderBy(x => property1.GetValue(x, null)).ThenBy(x => property2.GetValue(x, null)).ToList();
+                    return list.OrderBy(x => property1.GetValue(x, null)).ThenByDescending(x => property2.GetValue(x, null)).ToList();
                 }
                 else
                 {
@@ -42,8 +45,11 @@ namespace MyCustomSortProject
                 }
             }
 
-
-
+            foreach (Person person in sortedPersons)
+            {
+                Console.WriteLine($"{person.LastName}\t {person.FirstName}\t\t {person.Age}");
+            }
+            Console.WriteLine();
 
 
 
