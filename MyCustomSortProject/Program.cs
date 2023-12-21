@@ -21,6 +21,8 @@ namespace MyCustomSortProject
                 [thenBy] = 2
             };
 
+            public List<Person> Persons = GetPersons();
+
             foreach (Person person in Persons)
             {
                 Console.WriteLine($"{person.LastName}\t {person.FirstName}\t\t {person.Age}");
@@ -50,13 +52,6 @@ namespace MyCustomSortProject
                 Console.WriteLine($"{person.LastName}\t {person.FirstName}\t\t {person.Age}");
             }
             Console.WriteLine();
-
-
-
-            Console.WriteLine();
-
-
-
 
             Console.ReadKey();
         }

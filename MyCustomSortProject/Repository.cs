@@ -21,5 +21,10 @@ namespace MyCustomSortProject
             new Person("Лариса", "Николаева", 24),
             new Person("Игнат", "Степанов", 26)
         };
+
+        public static List<Person> GetPersons()
+        {
+            return Persons;
+        }
     }
 }
